@@ -1,0 +1,130 @@
+swagger: "2.0"
+info:
+  version: "0.0.1"
+  title: heros
+# during dev, should point to your local machine
+host: localhost:3000
+# basePath prefixes all resource paths 
+basePath: /
+# 
+schemes:
+  # tip: remove http to make production-grade
+  - http
+  - https
+# format of bodies a client can send (Content-Type)
+consumes:
+  - application/json
+# format of the responses to the client (Accepts)
+produces:
+  - application/json
+paths:
+  /displayhero:
+    get:
+      description: get hero details
+      # used as the method name of the controller
+      operationId: displayhero
+      parameters: []
+        # - name: body
+        #   description: user details
+        #   required: true
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            type: object
+        # responses may fall through to errors
+       
+         
+  /getupdate:
+    put:
+      description: update hero
+      # used as the method name of the controller
+      operationId: getupdate
+      parameters: []
+        # - name: body
+        #   description: update fan following who won more than 20 fights
+        #   required: true
+      responses:
+        "200":
+          description: Found
+          schema:
+            # a pointer to a definition
+            type: object
+        # responses may fall through to errors
+
+  /addherodetail:
+    post:
+      description: adding hero details
+      # used as the method name of the controller
+      operationId: addherodetail
+      parameters: 
+        - name: body
+          in: body
+          description: add details 
+          required: true
+          schema:
+            $ref: "#/definitions/adddetail"
+      responses:
+        "200":
+          description: Found
+          schema:
+            # a pointer to a definition
+            type: object
+        # responses may fall through to errors
+        default:
+          description: Not Found
+          schema:
+            type: object
+  /delete:
+    delete:
+      description: delete hero details whose super power is less than 2
+      # used as the method name of the controller
+      operationId: delete
+      parameters: []
+      responses:
+        "200":
+          description: Found
+          schema:
+            # a pointer to a definition
+            type: object
+        # responses may fall through to errors
+
+  /getid:
+    get:
+      description: get hero detail who can fly  
+      # used as the method name of the controller
+      operationId: getid
+      parameters: []
+      responses:
+        "200":
+          description: Found
+          schema:
+            # a pointer to a definition
+            type: object
+        # responses may fall through to errors
+
+definitions:
+  adddetail:
+    type: object
+    properties:
+      heroname: 
+        type: string
+        description: Hero name
+      heroHeight: 
+        type: number
+        description: Hero Height
+      canFly:
+        type: boolean
+        description: canFly
+      fanFollowing:
+        type: number
+        description: fanFollowing
+      superpowers: 
+        type: string
+        description: superpowers
+      fightswon: 
+        type: number
+        description: fightswon
+  
+   
